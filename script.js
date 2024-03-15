@@ -48,9 +48,27 @@ const target = {
 
 // Додаємо елементу #map обробник кліку
 const mapElement = document.getElementById("map");
+const ctx = mapElement.getContext("2d");
+let rect = mapElement.getBoundingClientRect();
+
 mapElement.addEventListener("click", (event) => {
     click++; // click = click + 1
     // console.log(click);
+
+    //малюємо крапку
+    
+
+    let posX = event.clientX - rect.left;
+    let posY = event.clientY - rect.top;
+
+    ctx.fillStyle = "#00ff00";
+
+    ctx.beginPath();
+
+    ctx.arc(posX, posY, 5, 0, 2 * Math.PI);
+
+    ctx.fill()
+    //
 
     const distance = getDistance(event, target);
     const distanceHint = getDistanceHint(distance);
